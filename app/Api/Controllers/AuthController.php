@@ -33,7 +33,7 @@ class AuthController extends BaseController
         ];
         try {
             if (!$token = JWTAuth::attempt($payload)) {
-                return response()->json(['error' => 'token_not_provided'], 401);
+                return response()->json(['error' => 'token不通过验证'], 401);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => '不能创建token'], 500);
