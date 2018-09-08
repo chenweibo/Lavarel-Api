@@ -28,7 +28,7 @@ class AuthController extends BaseController
     public function authenticate(Request $request)
     {
         $payload = [
-            'email' => $request->get('email'),
+            'email' => $request->get('username'),
             'password' => $request->get('password')
         ];
         try {
@@ -38,7 +38,7 @@ class AuthController extends BaseController
         } catch (JWTException $e) {
             return response()->json(['error' => '不能创建token'], 500);
         }
-        return response()->json(['code'=>20000,'token'=>$token]);
+        return response()->json(['code'=>20000,'data'=>['token'=>$token]]);
     }
 
     /**
@@ -54,6 +54,11 @@ class AuthController extends BaseController
         $user = User::create($newUser);
         $token = JWTAuth::fromUser($user);
         return $token;
+    }
+
+    public function logout()
+    {
+        // code...
     }
 
     /****
@@ -74,6 +79,6 @@ class AuthController extends BaseController
             return response()->json(['token_absent'], $e->getStatusCode());
         }
         // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        return response()->json(['code'=>20000,'data'=>['baseUserInfo'=>$user,'roles'=>['editor','admin']]]);
     }
 }

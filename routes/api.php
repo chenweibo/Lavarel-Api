@@ -17,6 +17,7 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers','middleware' => ['cors']], function ($api) {
         $api->post('user/login', 'AuthController@authenticate');  //登录授权
         $api->post('user/register', 'AuthController@register');
+        $api->post('user/logout', 'AuthController@logout');
         $api->group(['middleware' => 'jwt.auth'], function ($api) {
             $api->post('tests', 'TestsController@index');
             //路径为 /api/tests
@@ -27,7 +28,7 @@ $api->version('v1', function ($api) {
             //请求方式：
             //http://localhost:8000/api/tests?token=xxxxxx  (从登陆或注册那里获取,目前只能用get)
             $api->get('tests/{id}', 'TestsController@show');
-            $api->get('user/me', 'AuthController@AuthenticatedUser'); //根据
+            $api->get('/user/info', 'AuthController@AuthenticatedUser'); //根据
         });
     });
 });
