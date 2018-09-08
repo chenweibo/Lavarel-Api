@@ -38,7 +38,7 @@ class AuthController extends BaseController
         } catch (JWTException $e) {
             return response()->json(['error' => '不能创建token'], 500);
         }
-        return response()->json(compact('token'));
+        return response()->json(['code'=>20000,'token'=>$token]);
     }
 
     /**
