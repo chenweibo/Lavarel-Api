@@ -58,7 +58,7 @@ class AuthController extends BaseController
 
     public function logout()
     {
-        // code...
+        return response()->json(['code'=>20000]);
     }
 
     /****
@@ -78,7 +78,12 @@ class AuthController extends BaseController
         } catch (JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
+
+        $str ='[{"path":"/example","component":"Layout","redirect":"/example/table","name":"Example","meta":{"title":"Example","icon":"example","roles":["editor"]},"children":[{"path":"table","name":"Table","meta":{"title":"Table","icon":"table"}},{"path":"tree","name":"Tree","component":"@/views/tree/index","meta":{"title":"Tree","icon":"tree","roles":["editor"]}}]},{"path":"/form","component":"Layout","children":[{"path":"index","name":"Form","component":"@/views/form/index","meta":{"title":"Form","icon":"form"}}]},{"path":"external-link","component":"Layout","children":[{"path":"https://panjiachen.github.io/vue-element-admin-site/#/","meta":{"title":"externalLink","icon":"link"}}]}]';
         // the token is valid and we have found the user via the sub claim
-        return response()->json(['code'=>20000,'data'=>['baseUserInfo'=>$user,'roles'=>['editor','admin']]]);
+        $asyncRouterMap=json_decode($str);
+        $user->avatar = 'https://avatars3.githubusercontent.com/u/19586007?s=460&v=4';
+
+        return response()->json(['code'=>20000,'data'=>['baseUserInfo'=>$user,'roles'=>['editor','admin'],'asyncRouterMap'=>$asyncRouterMap ]]);
     }
 }
