@@ -30,5 +30,6 @@ $api->version('v1', function ($api) {
             $api->get('tests/{id}', 'TestsController@show');
             $api->get('/user/info', 'AuthController@AuthenticatedUser'); //根据
         });
+        $api->get('txt', 'PermissionContorller@demo'); //开发测试类，随意调整
     });
 });
