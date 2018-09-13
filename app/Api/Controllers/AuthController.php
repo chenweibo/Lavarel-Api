@@ -8,6 +8,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Models\Navigation;
 
 class AuthController extends BaseController
 {
