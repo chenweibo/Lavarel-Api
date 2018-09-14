@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100130
 File Encoding         : 65001
 
-Date: 2018-09-10 16:33:39
+Date: 2018-09-14 17:02:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,6 +66,27 @@ CREATE TABLE `model_has_roles` (
 -- ----------------------------
 -- Records of model_has_roles
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for navigations
+-- ----------------------------
+DROP TABLE IF EXISTS `navigations`;
+CREATE TABLE `navigations` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) DEFAULT NULL,
+  `component` varchar(255) DEFAULT NULL,
+  `redirect` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `meta` text,
+  `pid` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of navigations
+-- ----------------------------
+INSERT INTO `navigations` VALUES ('1', '/example', 'Layout', '/example/table', 'Example', '{\"title\":\"Example\",\"icon\":\"example\",\"roles\":[\"editor\"]}', '0');
+INSERT INTO `navigations` VALUES ('2', 'table', 'Table', '#', 'Table', '{\"title\":\"Table\",\"icon\":\"table\"}', '1');
 
 -- ----------------------------
 -- Table structure for password_resets
