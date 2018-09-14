@@ -11,7 +11,8 @@ class PermissionContorller extends BaseController
 {
     public function demo()
     {
-        $nav =make_tree(Navigation::get()->toArray());
-        return  response()->json(['data'=>$nav]);
+        $data = changeMeta(Navigation::get()->toArray());
+        $nav =make_tree($data);
+        return  response()->json(['data'=>$nav,'demo'=>$nav[0]['meta']]);
     }
 }

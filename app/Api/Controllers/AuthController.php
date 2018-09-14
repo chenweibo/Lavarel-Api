@@ -8,7 +8,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
-use Models\Navigation;
+use App\Models\Navigation;
 
 class AuthController extends BaseController
 {
@@ -80,11 +80,23 @@ class AuthController extends BaseController
             return response()->json(['token_absent'], $e->getStatusCode());
         }
 
-        $str ='[{"path":"/example","component":"Layout","redirect":"/example/table","name":"Example","meta":{"title":"Example","icon":"example","roles":["editor"]},"children":[{"path":"table","name":"Table","meta":{"title":"Table","icon":"table"}},{"path":"tree","name":"Tree","component":"@/views/tree/index","meta":{"title":"Tree","icon":"tree","roles":["editor"]}}]},{"path":"/form","component":"Layout","children":[{"path":"index","name":"Form","component":"@/views/form/index","meta":{"title":"Form","icon":"form"}}]},{"path":"external-link","component":"Layout","children":[{"path":"https://panjiachen.github.io/vue-element-admin-site/#/","meta":{"title":"externalLink","icon":"link"}}]}]';
-        // the token is valid and we have found the user via the sub claim
-        $asyncRouterMap=json_decode($str);
+        // $str ='[{"path":"/example","component":"Layout","redirect":"/example/table","name":"Example","meta":{"title":"Example","icon":"example","roles":["editor"]},"children":[{"path":"table","name":"Table","meta":{"title":"Table","icon":"table"}},{"path":"tree","name":"Tree","component":"@/views/tree/index","meta":{"title":"Tree","icon":"tree","roles":["editor"]}}]},{"path":"/form","component":"Layout","children":[{"path":"index","name":"Form","component":"@/views/form/index","meta":{"title":"Form","icon":"form"}}]},{"path":"external-link","component":"Layout","children":[{"path":"https://panjiachen.github.io/vue-element-admin-site/#/","meta":{"title":"externalLink","icon":"link"}}]}]';
+        // // the token is valid and we have found the user via the sub claim
+        $asyncRouterMap=$this->getNav();
         $user->avatar = 'https://avatars3.githubusercontent.com/u/19586007?s=460&v=4';
 
         return response()->json(['code'=>20000,'data'=>['baseUserInfo'=>$user,'roles'=>['editor','admin'],'asyncRouterMap'=>$asyncRouterMap ]]);
+    }
+
+    /****
+     * 获取后台左侧导航
+     * @return （array）
+     */
+
+    public function getNav()
+    {
+        $data = changeMeta(Navigation::get()->toArray());
+        $nav =make_tree($data);
+        return  $nav;
     }
 }

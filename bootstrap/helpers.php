@@ -25,3 +25,18 @@ function make_tree($list, $pk='id', $pid='pid', $child='children', $root=0)
     }
     return $tree;
 }
+
+/**
+*处理meta json 格式
+*
+* @author   chenweibo
+* @version     1.0
+*/
+
+function changeMeta($arr)
+{
+    foreach ($arr as $key => $value) {
+        $arr[$key]['meta'] =  json_decode($arr[$key]['meta']);
+    }
+    return $arr;
+}
