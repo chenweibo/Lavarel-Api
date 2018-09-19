@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100130
 File Encoding         : 65001
 
-Date: 2018-09-15 15:21:08
+Date: 2018-09-19 16:29:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,15 +80,15 @@ CREATE TABLE `navigations` (
   `meta` text,
   `pid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of navigations
 -- ----------------------------
-INSERT INTO `navigations` VALUES ('1', '/example', 'Layout', '/example/table', 'Example', '{\"title\":\"站点设置\",\"icon\":\"setup\",\"roles\":[\"editor\"]}', '0');
-INSERT INTO `navigations` VALUES ('2', 'table', 'Table', '#', 'Table', '{\"title\":\"Table\",\"icon\":\"table\"}', '1');
+INSERT INTO `navigations` VALUES ('1', '/website', 'Layout', '/example/table', 'Example', '{\"title\":\"站点设置\",\"icon\":\"setup\",\"roles\":[\"editor\"]}', '0');
+INSERT INTO `navigations` VALUES ('2', '/baseSets', 'BaseSets', '#', 'BaseSets', '{\"title\":\"基础设置\",\"icon\":\"set\"}', '1');
 INSERT INTO `navigations` VALUES ('3', 'tree', 'Tree', '#', 'Tree', '{\"title\":\"Tree\",\"icon\":\"tree\",\"roles\":[\"editor\"]}', '1');
-INSERT INTO `navigations` VALUES ('4', '/user', 'Tree', null, 'User', '{\"title\":\"用户管理\",\"icon\":\"user\"}', '0');
+INSERT INTO `navigations` VALUES ('4', '/users', 'Tree', null, '', '{\"title\":\"用户管理\",\"icon\":\"user\"}', '0');
 INSERT INTO `navigations` VALUES ('5', '/permissiom', 'Tree', null, 'Permissiom', '{\"title\":\"权限管理\",\"icon\":\"lock\"}', '0');
 INSERT INTO `navigations` VALUES ('6', '/gbook', 'Tree', null, 'Gbook', '{\"title\":\"留言管理\",\"icon\":\"gbook\"}', '0');
 INSERT INTO `navigations` VALUES ('7', '/page', '', null, 'Page', '{\"title\":\"单页管理\",\"icon\":\"page\"}', '0');
@@ -99,6 +99,8 @@ INSERT INTO `navigations` VALUES ('11', '/wechat', null, null, null, '{\"title\"
 INSERT INTO `navigations` VALUES ('12', '/system', null, null, null, '{\"title\":\"系统设置\",\"icon\":\"system\"}', '0');
 INSERT INTO `navigations` VALUES ('13', 'other', null, null, null, '{\"title\":\"其他设置\",\"icon\":\"other\"}', '0');
 INSERT INTO `navigations` VALUES ('14', 'pay', null, null, null, '{\"title\":\"支付系统\",\"icon\":\"pay\"}', null);
+INSERT INTO `navigations` VALUES ('15', '/user/list', 'User', null, 'User', '{\"title\":\"用户列表\",\"icon\":\"adduser\"}', '4');
+INSERT INTO `navigations` VALUES ('16', '/user/info', 'Person', null, 'Person', '{\"title\":\"个人中心\",\"icon\":\"person\"}', '4');
 
 -- ----------------------------
 -- Table structure for password_resets
