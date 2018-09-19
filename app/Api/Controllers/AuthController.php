@@ -34,7 +34,7 @@ class AuthController extends BaseController
         ];
         try {
             if (!$token = JWTAuth::attempt($payload)) {
-                return response()->json(['error' => 'token不通过验证'], 401);
+                return response()->json(['error' => 'token不通过验证'], 50012);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => '不能创建token'], 500);
@@ -73,9 +73,9 @@ class AuthController extends BaseController
                 return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
+            return response()->json(['token_expired','code'=>50014], $e->getStatusCode());
         } catch (TokenInvalidException $e) {
-            return response()->json(['token_invalid'], $e->getStatusCode());
+            return response()->json(['token_invalid','code'=>50012], $e->getStatusCode());
         } catch (JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
