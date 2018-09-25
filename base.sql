@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100130
 File Encoding         : 65001
 
-Date: 2018-09-21 16:49:09
+Date: 2018-09-25 17:00:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,15 +80,15 @@ CREATE TABLE `navigations` (
   `meta` text,
   `pid` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of navigations
 -- ----------------------------
-INSERT INTO `navigations` VALUES ('1', '/website', 'Layout', '/example/table', 'Example', '{\"title\":\"站点设置\",\"icon\":\"setup\",\"roles\":[\"editor\"]}', '0');
+INSERT INTO `navigations` VALUES ('1', '/website', 'Layout', 'noredirect', 'website', '{\"title\":\"站点设置\",\"icon\":\"setup\",\"roles\":[\"editor\"]}', '0');
 INSERT INTO `navigations` VALUES ('2', '/baseSets', 'BaseSets', '#', 'BaseSets', '{\"title\":\"基础设置\",\"icon\":\"set\"}', '1');
 INSERT INTO `navigations` VALUES ('3', 'tree', '', '#', 'Tree', '{\"title\":\"Tree\",\"icon\":\"tree\",\"roles\":[\"editor\"]}', '1');
-INSERT INTO `navigations` VALUES ('4', '/users', '', '/user', '', '{\"title\":\"用户管理\",\"icon\":\"user\"}', '0');
+INSERT INTO `navigations` VALUES ('4', '/users', '', '', '', '{\"title\":\"用户管理\",\"icon\":\"user\"}', '0');
 INSERT INTO `navigations` VALUES ('5', 'permissiom', '', '', 'Permission', '{\"title\":\"权限管理\",\"icon\":\"lock\"}', '0');
 INSERT INTO `navigations` VALUES ('6', '/gbook', '', null, 'Gbook', '{\"title\":\"留言管理\",\"icon\":\"gbook\"}', '0');
 INSERT INTO `navigations` VALUES ('7', '/page', '', null, 'Page', '{\"title\":\"单页管理\",\"icon\":\"page\"}', '0');
@@ -103,6 +103,7 @@ INSERT INTO `navigations` VALUES ('15', '/user/list', 'User', null, 'User', '{\"
 INSERT INTO `navigations` VALUES ('16', '/user/info', 'Person', null, 'Person', '{\"title\":\"个人中心\",\"icon\":\"person\"}', '4');
 INSERT INTO `navigations` VALUES ('17', '/permissiom/list', 'Permissionlist', null, 'Permissionlist', '{\"title\":\"角色管理\",\"icon\":\"permission\"}', '5');
 INSERT INTO `navigations` VALUES ('18', '/permissiom/role', 'Roles', 'Roles', 'Roles', '{\"title\":\"权限管理\",\"icon\":\"role\"}', '5');
+INSERT INTO `navigations` VALUES ('19', 'message', 'Message', 'Message', 'Message', '{\"title\":\"留言列表\",\"icon\":\"message\"}', '6');
 
 -- ----------------------------
 -- Table structure for password_resets
