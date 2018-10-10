@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100130
 File Encoding         : 65001
 
-Date: 2018-09-26 16:51:06
+Date: 2018-10-10 11:25:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,7 +81,7 @@ CREATE TABLE `navigations` (
   `pid` int(255) DEFAULT NULL,
   `hidden` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of navigations
@@ -108,6 +108,8 @@ INSERT INTO `navigations` VALUES ('19', 'message', 'Message', 'Message', 'Messag
 INSERT INTO `navigations` VALUES ('20', 'Pagelist', null, 'page/list', 'Page', '{\"title\":\"单篇列表\",\"icon\":\"page\"}', '7', null);
 INSERT INTO `navigations` VALUES ('21', 'create', null, null, 'PageCreate', '{\"title\":\"单篇添加\",\"icon\":\"page\"}', '7', 'true');
 INSERT INTO `navigations` VALUES ('22', 'edit/:id(\\\\d+)', null, null, 'PageEdit', '{\"title\":\"单篇编辑\",\"icon\":\"page\"}', '7', 'true');
+INSERT INTO `navigations` VALUES ('23', 'article/cate', null, '', 'ArticleCate', '{\"title\":\"类目管理\",\"icon\":\"category\"}', '8', null);
+INSERT INTO `navigations` VALUES ('24', 'article/list', null, null, 'ArticleList', '{\"title\":\"文章列表\",\"icon\":\"articlelist\"}', '8', null);
 
 -- ----------------------------
 -- Table structure for password_resets
