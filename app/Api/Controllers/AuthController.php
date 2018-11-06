@@ -35,12 +35,13 @@ class AuthController extends BaseController
         ];
         try {
             if (!$token = JWTAuth::attempt($payload)) {
-                return response()->json(['error' => 'token不通过验证'], 50012);
+                return response()->json(['code' => 504, 'message' => 'token不通过验证']);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => '不能创建token'], 500);
+            return response()->json(['code' => 500, 'message' => '不能创建token']);
         }
-        return response()->json(['code' => 20000, 'data' => ['token' => $token]]);
+
+        return response()->json(['code' => 200, 'message' => '获取token成功', 'data' => ['token' => $token]]);
     }
 
     /**
@@ -87,7 +88,7 @@ class AuthController extends BaseController
         $asyncRouterMap = $this->getNav();
         $user->avatar = 'https://avatars3.githubusercontent.com/u/19586007?s=460&v=4';
 
-        return response()->json(['code' => 20000, 'data' => ['baseUserInfo' => $user, 'roles' => ['editor', 'admin'], 'asyncRouterMap' => $asyncRouterMap]]);
+        return response()->json(['code' => 200, 'data' => ['baseUserInfo' => $user, 'roles' => ['editor', 'admin'], 'asyncRouterMap' => $asyncRouterMap]]);
     }
 
     /****
@@ -99,6 +100,7 @@ class AuthController extends BaseController
     {
         $data = changeMeta(Navigation::get()->toArray());
         $nav = make_tree($data);
+
         return  $nav;
     }
 }
