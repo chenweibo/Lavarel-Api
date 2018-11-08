@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
-    $api->group(['namespace' => 'App\Api\Controllers','middleware' => ['cors']], function ($api) {
+    $api->group(['namespace' => 'App\Http\Controllers\Api\Admin\Controllers','middleware' => ['cors']], function ($api) {
         $api->post('user/login', 'AuthController@authenticate');  //登录授权
         $api->post('user/register', 'AuthController@register');
         $api->post('user/logout', 'AuthController@logout');

@@ -1,5 +1,5 @@
 <?php
-namespace App\Api\Controllers;
+namespace App\Http\Controllers\Api\Admin\Controllers;
 
 use App\Api\Transformers\TestsTransformer;
 use App\Models\User;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Transformers;
+namespace App\Http\Controllers\Api\Admin\Controllers\Transformers;
 
 /**该类为dingo api封装好**/
 use League\Fractal\TransformerAbstract;
