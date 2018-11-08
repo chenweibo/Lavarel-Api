@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api\Admin\Controllers;
 
-use App\Api\Transformers\TestsTransformer;
+use App\Http\Controllers\Api\Admin\Controllers\Transformers\TestsTransformer;
 use App\Models\User;
 
 class TestsController extends BaseController
