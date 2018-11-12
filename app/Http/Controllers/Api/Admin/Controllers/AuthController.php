@@ -44,7 +44,7 @@ class AuthController extends BaseController
         return response()->json(['code' => 200, 'message' => '获取token成功', 'data' => ['token' => $token]]);
     }
 
-    /**
+    /*****
      * @param Request $request
      */
     public function register(Request $request)
@@ -76,11 +76,11 @@ class AuthController extends BaseController
                 return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
-            return response()->json(['token_expired', 'code' => 50014], $e->getStatusCode());
+            return response()->json(['token_expired', 'code' => 50014]);
         } catch (TokenInvalidException $e) {
-            return response()->json(['token_invalid', 'code' => 50012], $e->getStatusCode());
+            return response()->json(['token_invalid', 'code' => 5004]);
         } catch (JWTException $e) {
-            return response()->json(['token_absent'], $e->getStatusCode());
+            return response()->json(['token_absent','code'=>504]);
         }
 
         // $str ='[{"path":"/example","component":"Layout","redirect":"/example/table","name":"Example","meta":{"title":"Example","icon":"example","roles":["editor"]},"children":[{"path":"table","name":"Table","meta":{"title":"Table","icon":"table"}},{"path":"tree","name":"Tree","component":"@/views/tree/index","meta":{"title":"Tree","icon":"tree","roles":["editor"]}}]},{"path":"/form","component":"Layout","children":[{"path":"index","name":"Form","component":"@/views/form/index","meta":{"title":"Form","icon":"form"}}]},{"path":"external-link","component":"Layout","children":[{"path":"https://panjiachen.github.io/vue-element-admin-site/#/","meta":{"title":"externalLink","icon":"link"}}]}]';

@@ -18,10 +18,11 @@ $api->version('v1', function ($api) {
         $api->post('user/login', 'AuthController@authenticate');  //登录授权
         $api->post('user/register', 'AuthController@register');
         $api->post('user/logout', 'AuthController@logout');
-        $api->group(['middleware' => 'jwt.check'], function ($api) {
+        $api->group(['middleware' => 'jwt.auth'], function ($api) {
             $api->post('tests', 'TestsController@index');
             $api->get('tests/{id}', 'TestsController@show');
-            $api->get('/user/info', 'AuthController@AuthenticatedUser'); //根据
+            $api->get('user/info', 'AuthController@AuthenticatedUser'); //获取用户信息
+            $api->post('permission/role/create','PermissionContorller@createRole');//创建角色
         });
         $api->get('txt', 'PermissionContorller@demo'); //开发测试类，随意调整
     });
