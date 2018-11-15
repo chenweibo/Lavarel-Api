@@ -88,7 +88,7 @@ class AuthController extends BaseController
         $asyncRouterMap = $this->getNav();
         $user->avatar = 'https://avatars3.githubusercontent.com/u/19586007?s=460&v=4';
 
-        return response()->json(['code' => 200, 'data' => ['baseUserInfo' => $user, 'roles' => ['editor', 'admin'], 'asyncRouterMap' => $asyncRouterMap]]);
+        return response()->json(['code' => 200, 'message'=>'获取成功', 'data' => ['baseUserInfo' => $user, 'roles' => ['editor', 'admin'], 'asyncRouterMap' => $asyncRouterMap]]);
     }
 
     /****
