@@ -25,7 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('超级管理员');
+            if ($user->hasRole('超级管理员')) {
+                return true;
+            }
         });
         //
     }
