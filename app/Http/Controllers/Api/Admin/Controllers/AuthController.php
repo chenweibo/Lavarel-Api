@@ -60,8 +60,14 @@ class AuthController extends BaseController
         return $token;
     }
 
+    /****
+     * 用户登出
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout()
     {
+        JWTAuth::setToken(JWTAuth::getToken())->invalidate();
+
         return response()->json(['code' => 20000]);
     }
 
@@ -80,7 +86,7 @@ class AuthController extends BaseController
         } catch (TokenInvalidException $e) {
             return response()->json(['token_invalid', 'code' => 5004]);
         } catch (JWTException $e) {
-            return response()->json(['token_absent','code'=>504]);
+            return response()->json(['token_absent', 'code' => 504]);
         }
 
         // $str ='[{"path":"/example","component":"Layout","redirect":"/example/table","name":"Example","meta":{"title":"Example","icon":"example","roles":["editor"]},"children":[{"path":"table","name":"Table","meta":{"title":"Table","icon":"table"}},{"path":"tree","name":"Tree","component":"@/views/tree/index","meta":{"title":"Tree","icon":"tree","roles":["editor"]}}]},{"path":"/form","component":"Layout","children":[{"path":"index","name":"Form","component":"@/views/form/index","meta":{"title":"Form","icon":"form"}}]},{"path":"external-link","component":"Layout","children":[{"path":"https://panjiachen.github.io/vue-element-admin-site/#/","meta":{"title":"externalLink","icon":"link"}}]}]';
@@ -88,7 +94,7 @@ class AuthController extends BaseController
         $asyncRouterMap = $this->getNav();
         $user->avatar = 'https://avatars3.githubusercontent.com/u/19586007?s=460&v=4';
 
-        return response()->json(['code' => 200, 'message'=>'获取成功', 'data' => ['baseUserInfo' => $user, 'roles' => ['editor', 'admin'], 'asyncRouterMap' => $asyncRouterMap]]);
+        return response()->json(['code' => 200, 'message' => '获取成功', 'data' => ['baseUserInfo' => $user,'roles'=>['admin'], 'asyncRouterMap' => $asyncRouterMap]]);
     }
 
     /****
@@ -101,6 +107,6 @@ class AuthController extends BaseController
         $data = changeMeta(Navigation::get()->toArray());
         $nav = make_tree($data);
 
-        return  $nav;
+        return $nav;
     }
 }
